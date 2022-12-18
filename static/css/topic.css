@@ -1,0 +1,137 @@
+.topic-tittle{
+  font-family: 'Francois One';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 25px;
+  color: #B01E1E;
+  margin-bottom: 20px;
+}
+
+.topic-emo{
+  font-family: 'Francois One';
+  font-size: 20px;
+  color: white;
+  margin: 0px;
+  padding:10px;
+  text-align: center;
+}
+
+.topic-key{
+  font-family: 'Asap Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  text-align: center;
+  color: #B01E1E;
+}
+
+.tab-change{
+  padding: 0;
+}
+
+.persentase{
+  background: conic-gradient(from 180deg at 50% 50%, #B01E1E 0deg, #B01E1E 136.25deg, #ED6868 136.29deg, #ED6868 276.87deg, #490000 276.91deg, #490000 360deg);
+  height:250px;
+  width: 250px;
+  border-radius:50%;
+  display:inline-block;
+  margin-right:30px
+}
+
+.in-persentase{
+  height:225px;
+  width: 225px;
+  background-color: white;
+  border-radius: 50%;
+  display: block;
+  position: static;
+  color: #B01E1E;
+}
+
+.rank-persentase{
+  font-family: 'Francois One';
+  font-weight: 400;
+  font-size: 82px;
+  width: 225px;
+  margin: 0;
+  line-height: 90px;
+  text-align: center;
+}
+
+.topic-persentase{
+  font-family: 'Asap Condensed';
+  position: relative;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 0 15px;
+  text-align: center;
+  white-space:normal;
+}
+
+.text-in-topic{
+  color: #F9F9F9;
+  border-top: #B01E1E solid 2px;
+}
+
+.topic-tweet{
+  margin-top: 30px;
+  padding: 0px 20px 0 20px;
+  height: 60vh;
+}
+
+.topic-tweet p{
+  font-family: 'Francois One';
+  font-size: 16px;
+  padding: 15px 20px;
+  color: #FFFFFF;
+  border-radius: 10px;
+}
+
+.positif .topic-tweet p{
+  background-color: #B01E1E;
+}
+
+.negatif .topic-tweet p{
+  background-color: #490000;
+}
+
+.netral .topic-tweet p{
+  background-color: #ED6868;
+}
+
+.dbclick-alert{
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.60);
+  top:0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  z-index: 0;
+  text-align: center;
+  display: none;
+}
+
+.dbclick-alert:hover{
+  cursor: pointer;
+}
+
+.dbclick-alert i{
+  font-size: 80px;
+}
+
+@media (max-width: 768px) {
+  .topic-tittle{
+    text-align: center;
+  }
+
+  .dbclick-alert{
+    display: inline;
+  }
+}
+
+@media (max-width: 540px) {
+  .btn-landing{
+    text-align: center;
+  } 
+}

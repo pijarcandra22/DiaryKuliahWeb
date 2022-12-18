@@ -1,0 +1,63 @@
+.landing-base{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-flow: column;
+}
+
+.bg-landing-red-library{
+  background: linear-gradient(0deg, rgba(61, 1, 1, 0.74), rgba(61, 1, 1, 0.74)), url(/static/img/backgroundImage.webp);
+  background-position: center;
+  background-size: cover;
+}
+
+.little-tittle{
+  font-family: 'Francois One';
+  font-weight: 400;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+.img-tittle{
+  background-color: #FFFFFF;
+  flex-grow : 1;
+  border: 5px #B01E1E solid;
+}
+
+.btn-landing{
+  margin:10px 0
+}
+
+.btn-landing h5{
+  margin-top: 15px;
+}
+
+.btn-icon > a{
+  color: #FFFFFF;
+  margin: 0 3px;
+}
+
+#footer h1{
+  font-family: Inspiration;
+  font-style: normal;
+  font-size: 66px;
+  text-align: center;
+
+  color: #FFFFFF;
+}
+
+@media screen and (orientation:portrait){
+  
+}
+
+@media (min-width: 540px) {
+  .right-border{
+    border-right: #FFFFFF solid 2px;
+  }
+}
+
+@media (max-width: 540px) {
+  .btn-landing{
+    text-align: center;
+  }  
+}

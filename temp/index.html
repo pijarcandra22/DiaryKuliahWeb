@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Top of Pot | Diary Kuliah</title>
+
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
+    <!--Google Font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Asap+Condensed:ital@0;1&family=Francois+One&display=swap&family=Inspiration" rel="stylesheet">
+  
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/5eff079939.js" crossorigin="anonymous"></script>
+
+    <!--Local CSS-->
+    <link href="/static/css/landing.css" rel="stylesheet">
+    <link href="/static/css/global.css" rel="stylesheet">
+    <style>
+    </style>
+  </head>
+  <body class="vertical-scroll">
+    <div class="landing-base bg-landing-red-library" style="padding: 30px 10%">
+      <div style="text-align: center;">
+        <h5 class="little-tittle" style="border-bottom: 1px solid #FFF;">Sebuah Web Dari Calon Sarjana</h5>
+      </div>
+      <div class="img-tittle position-relative" style="margin-top:20px;">
+        <img class="position-absolute start-50 translate-middle" style="top:48%" src="/static/img/landing.webp" alt="tittle image top of pot" height="60%">
+      </div>
+      <div class="row btn-landing">
+        <div class="col-sm-6 col-md-3 right-border">
+          <h5 class="little-tittle">Topik Umum</h5>
+          <div class="horizontal-scroll btn-icon">
+            <a href=""><i class="fa-solid fa-landmark"></i></a>
+            <a href=""><i class="fa-solid fa-graduation-cap"></i></a>
+            <a href=""><i class="fa-solid fa-border-all"></i></a>
+            <a href=""><i class="fa-solid fa-star-of-life"></i></a>
+            <a href=""><i class="fa-solid fa-tree"></i></a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 right-border">
+          <h5 class="little-tittle">Topik Yang Banyak Dicari</h5>
+          <div class="horizontal-scroll">
+            <button type="button" class="btn btn-light btn-sm btn-red">Kesehatan | Kategori 1</button>
+            <button type="button" class="btn btn-light btn-sm btn-red">Politik | Kategori 1</button>
+            <button type="button" class="btn btn-light btn-sm btn-red">Pendidikan | Kategori 1</button>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-3">
+          <h5 class="little-tittle">Ciptakan Topik Baru</h5>
+          <div class="input-group mb-3 form-search">
+            <input type="text" class="form-control form-control-sm form-red" placeholder="Masukan Kata Kunci" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <button type="button" class="btn btn-light btn-sm btn-red"><i class="fa-solid fa-magnifying-glass"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="topic_place" class="container"></div>
+    <div class="row justify-content-center" id="footer">
+      <div class="col-12 col-md-4 col-md-2">
+        <h1>Diary Kuliah</h1>
+      </div>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+</html>
+<script>
+  $( document ).ready(function() {
+    for(i=0;i<4;i++){
+      var divElem = $('<div/>').load('/temp/content/topic.html').addClass("topic-child");
+      divElem.appendTo('#topic_place');
+    }
+  });
+</script>
+<script src="/static/js/landing.js"></script>
