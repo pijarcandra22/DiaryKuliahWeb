@@ -1,0 +1,28 @@
+<html>
+  <link href="/static/css/topic.css" rel="stylesheet">
+
+  <div style="margin-top:20px" id="{{topik}}-topic-tweet">
+    <h2 class="topic-tittle">{{topik}}</h2>
+    <div class="btn-group btn-group-sm" role="group" style="width: 100%; margin-bottom:20px; border: #B01E1E solid 1px; border-radius: 99px;">
+      {%if whatMustOpen==3%}
+        <button type="button" class="btn btn-light btn-sm btn-red" id="preprocessing-{{topik}}" onclick="preprocessing('{{topik}}')">Preprocessing</button>
+        <button type="button" class="btn btn-light btn-sm btn-red">Analisis Sentimen</button>
+        <button type="button" class="btn btn-light btn-sm btn-red">Kategorisasi</button>
+      {%endif%}
+
+      {%if whatMustOpen==2%}
+        <button type="button" class="btn btn-light btn-sm btn-red" disabled>Preprocessing</button>
+        <button type="button" class="btn btn-light btn-sm btn-red" id="emotion-{{topik}}" onclick="emotion('{{topik}}')">Analisis Sentimen</button>
+        <button type="button" class="btn btn-light btn-sm btn-red">Kategorisasi</button>
+      {%endif%}
+      
+      {%if whatMustOpen==1%}
+        <button type="button" class="btn btn-light btn-sm btn-red" disabled>Preprocessing</button>
+        <button type="button" class="btn btn-light btn-sm btn-red" disabled>Analisis Sentimen</button>
+        <button type="button" class="btn btn-light btn-sm btn-red" id="klasterisasi-{{topik}}" onclick="klasterisasi('{{topik}}')">Kategorisasi</button>
+      {%endif%}
+    </div>
+  </div>
+</html>
+<script>
+</script>

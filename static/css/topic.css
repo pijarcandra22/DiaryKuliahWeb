@@ -1,3 +1,31 @@
+@keyframes topicOpen {
+  0%   {
+    opacity: 0;
+    display: none;
+  }
+  1% {
+    display: inline;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes topicOpen2 {
+  0%   {
+    opacity: 0;
+    height: 0;
+    display: none;
+  }
+  1% {
+    display: inline;
+  }
+  100% {
+    opacity: 1;
+    height: 60vh;
+  }
+}
+
 .topic-tittle{
   font-family: 'Francois One';
   font-style: normal;
@@ -5,6 +33,7 @@
   font-size: 25px;
   color: #B01E1E;
   margin-bottom: 20px;
+  text-transform: capitalize;
 }
 
 .topic-emo{
@@ -36,7 +65,13 @@
   width: 250px;
   border-radius:50%;
   display:inline-block;
-  margin-right:30px
+  margin-right:30px;
+  animation: example 2;
+  transition: transform 1s ease-in-out;
+}
+
+.persentase:hover{
+  transform: rotate(360deg)
 }
 
 .in-persentase{
@@ -44,9 +79,18 @@
   width: 225px;
   background-color: white;
   border-radius: 50%;
-  display: block;
-  position: static;
   color: #B01E1E;
+  transition: height 1s ease-in-out,
+  width 1s ease-in-out,
+  background 1s ease-in-out;
+}
+
+.in-persentase:hover{
+  height:250px;
+  width: 250px;
+  background:#B01E1E;
+  color:white;
+  cursor: pointer;
 }
 
 .rank-persentase{
@@ -72,12 +116,18 @@
 .text-in-topic{
   color: #F9F9F9;
   border-top: #B01E1E solid 2px;
+  animation-name: topicOpen;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .topic-tweet{
   margin-top: 30px;
   padding: 0px 20px 0 20px;
-  height: 60vh;
+  z-index: 0;
+  animation-name: topicOpen2;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
 }
 
 .topic-tweet p{
@@ -107,7 +157,7 @@
   bottom:0;
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 1;
   text-align: center;
   display: none;
 }

@@ -82,6 +82,17 @@
   font-family: 'Asap Condensed';
 }
 
+.btn-red:disabled{
+  background-color:#B01E1E;
+  border: #B01E1E solid 1px;
+  color: #fff;
+  font-family: 'Francois One';
+  border-radius: 99px;
+  padding-left: 10px;
+  padding-right: 10px;
+  opacity: 1;
+}
+
 .btn-red{
   color: #B01E1E;
   font-family: 'Francois One';

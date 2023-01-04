@@ -22,13 +22,22 @@
     <style>
     </style>
   </head>
+  <div id="loader" class="position-relative" style="width: 100%; height:100vh">
+    <div class="position-absolute top-50 start-50 translate-middle">
+      <img src="image/loader.gif" class="shadow bg-body" width="80%" style="border-radius: 50%" alt="" />
+    </div>
+  </div>
   <body class="vertical-scroll">
     <div class="landing-base bg-landing-red-library" style="padding: 30px 10%">
       <div style="text-align: center;">
         <h5 class="little-tittle" style="border-bottom: 1px solid #FFF;">Sebuah Web Dari Calon Sarjana</h5>
       </div>
       <div class="img-tittle position-relative" style="margin-top:20px;">
-        <img class="position-absolute start-50 translate-middle" style="top:48%" src="/static/img/landing.webp" alt="tittle image top of pot" height="60%">
+        <div class="position-relative" id="tittleImg"><img id="tittleImgInside" class="position-absolute start-50 translate-middle" style="top:48%" src="/static/img/landing.webp" alt="tittle image top of pot"></div>
+        <div id="imgspinner" class="d-none position-absolute top-50 start-50 translate-middle">
+          <span class="spinner-grow text-danger" style="width: 3rem; height: 3rem;" role="status"></span>
+          Loading...
+        </div>
       </div>
       <div class="row btn-landing">
         <div class="col-sm-6 col-md-3 right-border">
@@ -44,24 +53,39 @@
         <div class="col-sm-6 col-md-6 right-border">
           <h5 class="little-tittle">Topik Yang Banyak Dicari</h5>
           <div class="horizontal-scroll">
-            <button type="button" class="btn btn-light btn-sm btn-red">Kesehatan | Kategori 1</button>
-            <button type="button" class="btn btn-light btn-sm btn-red">Politik | Kategori 1</button>
-            <button type="button" class="btn btn-light btn-sm btn-red">Pendidikan | Kategori 1</button>
+            {%for t in topic%}
+              <button type="button" style="text-transform: capitalize;" class="btn btn-light btn-sm btn-red" onclick="upSeeTopic('{{topic[t].topic}}','{{topic[t].preprocessing}}','{{topic[t].emotion}}','{{topic[t].modeling}}')">{{topic[t].topic}}</button>
+            {%endfor%}
           </div>
         </div>
         <div class="col-sm-12 col-md-3">
           <h5 class="little-tittle">Ciptakan Topik Baru</h5>
           <div class="input-group mb-3 form-search">
-            <input type="text" class="form-control form-control-sm form-red" placeholder="Masukan Kata Kunci" aria-label="Recipient's username" aria-describedby="basic-addon2">
-            <button type="button" class="btn btn-light btn-sm btn-red"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" class="form-control form-control-sm form-red" id="search-new-topic-input" placeholder="Masukan Kata Kunci" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <button type="button" class="btn btn-light btn-sm btn-red" id="search-new-topic"><i class="fa-solid fa-magnifying-glass"></i></button>
           </div>
         </div>
       </div>
     </div>
     <div id="topic_place" class="container"></div>
     <div class="row justify-content-center" id="footer">
-      <div class="col-12 col-md-4 col-md-2">
+      <div class="col-10 col-md-4" style="min-width:200px; max-width:300px">
         <h1>Diary Kuliah</h1>
+        <p>Sebuah Podcast yang menceritakan cerita kuliahku dan mendengar keluhanmu</p>
+      </div>
+      <div class="col-12 col-md-auto" style="text-align: center;">
+        <img src="/static/img/pijar_prof.webp" alt="" style="width: fit-content;">
+      </div>
+      <div class="col-10 col-md-4" style="min-width:200px; max-width:300px">
+        <p class="text-md-start">
+          Pijar Candra Mahatagandha<br>
+          Pria Tampan yang segera Menjadi Sarjana<br><br>
+          Podcaster, Web Designer, Desainer Grafis, Machine Learning Developer<br>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a> 
+          <a href="#"><i class="fa-brands fa-facebook"></i></a> 
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a> 
+          <a href="#"><i class="fa-brands fa-github"></i></a> 
+        </p>
       </div>
     </div>
   </body>
@@ -69,11 +93,50 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </html>
 <script>
+  document.onreadystatechange = function() {
+      if (document.readyState !== "complete") {
+        document.querySelector("body").style.visibility = "hidden";
+        document.querySelector("#loader").style.visibility = "visible";
+      } else {
+        document.querySelector("#loader").style.display = "none";
+        document.querySelector("body").style.visibility = "visible";
+      }
+  };
   $( document ).ready(function() {
-    for(i=0;i<4;i++){
-      var divElem = $('<div/>').load('/temp/content/topic.html').addClass("topic-child");
+    topik = JSON.parse('{{topic|tojson}}')
+    console.log(topik)
+    for(t in topik){
+      whatMustOpen = 0
+      if(!topik[t]['preprocessing']){whatMustOpen+=1}
+      if(!topik[t]['emotion']){whatMustOpen+=1}
+      if(!topik[t]['modeling']){whatMustOpen+=1}
+      var divElem = $('<div/>').load('/topik/'+topik[t]['topic']+"/"+whatMustOpen).addClass("topic-child");
       divElem.appendTo('#topic_place');
     }
+    
+    $("#search-new-topic").click(function() {
+      topic = $("#search-new-topic-input").val()
+      
+      text = "Pemilihan Topik akan memerlukan waktu yang lama.\nApakah anda tetap ingin melanjutkan?";
+      if (confirm(text) == true) {
+        $("#tittleImgInside").css({'animation-duration':'1s','animation-name':'fadeOut','animation-fill-mode':'forwards'})
+        $("#tittleImg").css({'animation-duration':'1s','animation-name':'spin','animation-fill-mode':'forwards'})
+        $("#imgspinner").removeClass("d-none")
+        $.ajax({
+          url: '/new-topic/'+topic,
+          type: 'GET',
+          success: function(response){
+            alert("Penciptaan Topik Sukses")
+            window.location.reload();
+          },
+          error: function(error){
+            alert("Terjadi masalah dalam pengolahan tweet, anda bisa melanjutkan proses secara manual")
+            window.location.reload();
+          }
+        });
+      }
+    });
+
   });
 </script>
 <script src="/static/js/landing.js"></script>
